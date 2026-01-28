@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceFlow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7f8;
+      color: #0f172a;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #0f766e;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    nav button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 20px;
+      background: #0f766e;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #ecfeff, #f0fdfa);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 720px;
+      margin: auto;
+      opacity: 0.85;
+    }
+
+    .hero .cta {
+      margin-top: 30px;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    section p {
+      opacity: 0.8;
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Auth */
+    .auth {
+      max-width: 420px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .auth h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .auth input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 14px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .auth button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #0f766e;
+      color: #fff;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 16px;
+      cursor: pointer;
+      color: #0f766e;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 40px;
+      margin-top: 80px;
+    }
+
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    footer p {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">FinanceFlow</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="expense-tracker.html">Expense Tracker</a></li>
+      <li><a href="features.html">Other Features</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <button onclick="location.href='auth.html'">Login / Signup</button>
+  </nav>
+
+  <section>
+    <h2>Support</h2>
+    <p>Contact us or visit our help center for assistance.</p>
+  </section>
+</body>
+
+</html>
