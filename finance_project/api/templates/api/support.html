@@ -1,11 +1,10 @@
-<!-- auth.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FinanceFlow - Login / Signup</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceFlow</title>
   <style>
     * {
       margin: 0;
@@ -180,7 +179,7 @@
 </head>
 
 <body>
-  <!-- Navbar -->
+
   <nav>
     <div class="logo">FinanceFlow</div>
     <ul>
@@ -189,25 +188,13 @@
       <li><a href="features.html">Other Features</a></li>
       <li><a href="support.html">Support</a></li>
     </ul>
-    <button>Login / Signup</button>
+    <button onclick="location.href='auth.html'">Login / Signup</button>
   </nav>
 
-  <div class="auth">
-    <h2 id="authTitle">Login</h2>
-    <input placeholder="Email" />
-    <input placeholder="Password" type="password" />
-    <button>Continue</button>
-    <div class="toggle" onclick="toggleAuth()">Don't have an account? Sign up</div>
-  </div>
-
-  <script>
-    let isLogin = true;
-    function toggleAuth() {
-      isLogin = !isLogin;
-      document.getElementById('authTitle').innerText = isLogin ? 'Login' : 'Sign Up';
-      document.querySelector('.toggle').innerText = isLogin ? "Don't have an account? Sign up" : 'Already have an account? Login';
-    }
-  </script>
+  <section>
+    <h2>Support</h2>
+    <p>Contact us or visit our help center for assistance.</p>
+  </section>
 </body>
 
 </html>

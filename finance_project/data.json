@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Smith",
+      "email": "alice@example.com",
+      "password": "alicepass",
+      "accounts": [
+        {"id": 1, "name": "Savings", "balance": 9681.49},
+        {"id": 2, "name": "Checking", "balance": 7583.00}
+      ],
+      "transactions": [
+        {"id": 1, "date": "2024-02-01", "description": "Grocery Store", "amount": -45.5, "type": "expense"},
+        {"id": 2, "date": "2024-02-02", "description": "Salary", "amount": 2200.0, "type": "income"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Bob Johnson",
+      "email": "bob@example.com",
+      "password": "bobpass",
+      "accounts": [
+        {"id": 3, "name": "Savings", "balance": 4500.0},
+        {"id": 4, "name": "Checking", "balance": 1200.0}
+      ],
+      "transactions": [
+        {"id": 3, "date": "2024-01-15", "description": "Coffee Shop", "amount": -5.75, "type": "expense"},
+        {"id": 4, "date": "2024-01-30", "description": "Freelance", "amount": 800.0, "type": "income"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Carol Lee",
+      "email": "carol@example.com",
+      "password": "carolpass",
+      "accounts": [
+        {"id": 5, "name": "Savings", "balance": 15000.0},
+        {"id": 6, "name": "Checking", "balance": 3200.0}
+      ],
+      "transactions": [
+        {"id": 5, "date": "2024-02-03", "description": "Bookstore", "amount": -25.0, "type": "expense"},
+        {"id": 6, "date": "2024-02-05", "description": "Dividends", "amount": 120.0, "type": "income"}
+      ]
+    }
+  ]
+}

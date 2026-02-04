@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <title>Finance Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <style>
 * {
   box-sizing: border-box;
@@ -11,7 +13,7 @@
 
 body {
   margin: 0;
-  background: #2f4f4f;
+  background: #0f766e;
   padding: 30px;
 }
 
@@ -36,25 +38,119 @@ body {
   border-radius: 40px;
 }
 
-.nav-left button {
+.nav-left nav {
   border: none;
   background: none;
   padding: 10px 16px;
   border-radius: 30px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-left nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-left nav:hover {
+  background: #f0f0f0;
+}
+
+.nav-left nav:hover a {
+  color: #000;
 }
 
 .nav-left .active {
-  background: black;
+  background: #0f766e;
   color: white;
 }
 
-.nav-right button {
-  background: #003c3c;
+.nav-left .active a {
+  color: white;
+}
+
+.nav-right nav {
+  background: #0f766e;
   color: white;
   border: none;
   padding: 10px 18px;
   border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-right nav:hover {
+  background: #0d6b63;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+  background: #0d6b63;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 1;
+  margin-top: 5px;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+.dropdown-menu a:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.dropdown-menu a:last-child,
+.dropdown-menu button:last-child {
+  border-radius: 0 0 8px 8px;
 }
 
 /* HEADER */
@@ -101,7 +197,7 @@ body {
   height: 220px;
   border-radius: 50%;
   border: 14px solid #d9e4e4;
-  border-top-color: #0dbb78;
+  border-top-color: #0f766e;
   border-right-color: #ffd166;
   display: flex;
   align-items: center;
@@ -168,20 +264,26 @@ body {
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-left">
-      <button>Home</button>
-      <button class="active">Dashboard</button>
-      <button>Your Accounts</button>
-      <button>Transactions</button>
-      <button>Support</button>
+      <nav><a href="#home">Home</a></nav>
+      <nav class="active"><a href="dashboard.html">Dashboard</a></nav>
+      <nav><a href="accounts.html">Your Accounts</a></nav>
+      <nav><a href="transactions.html">Transactions</a></nav>
+      <nav><a href="support1.html">Support</a></nav>
     </div>
     <div class="nav-right">
-      <button>Your Profile</button>
+      <div class="dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown()">Your Profile</button>
+        <div class="dropdown-menu" id="profileDropdown">
+          <a href="#settings">Settings</a>
+          <button onclick="logout()">Logout</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- HEADER -->
   <div class="header">
-    <h1>Good morning, James</h1>
+    <button style="background: #0f766e; color: white; border: none; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-weight: 500; font-size: 14px; transition: all 0.3s ease;" onmouseover="this.style.background='#0d6b63'" onmouseout="this.style.background='#0f766e'">+ New Payment</button>
     <input type="search" placeholder="Search..." style="padding:10px;border-radius:20px;border:none;">
   </div>
 
@@ -242,6 +344,27 @@ body {
 
   </div>
 </div>
+
+<script>
+function toggleDropdown() {
+  const dropdown = document.getElementById('profileDropdown');
+  dropdown.classList.toggle('show');
+}
+
+function logout() {
+  alert('Logging out...');
+  // Add logout logic here
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('profileDropdown');
+  const button = document.querySelector('.dropdown-toggle');
+  if (!event.target.matches('.dropdown-toggle') && !dropdown.contains(event.target)) {
+    dropdown.classList.remove('show');
+  }
+});
+</script>
 
 </body>
 </html>
