@@ -6,6 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FinanceFlow</title>
+
   <style>
     * {
       margin: 0;
@@ -17,6 +18,7 @@
     body {
       background: #f5f7f8;
       color: #0f172a;
+      line-height: 1.6;
     }
 
     a {
@@ -24,14 +26,14 @@
       color: inherit;
     }
 
-    /* Navbar */
+    /* ================= NAVBAR ================= */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 40px;
+      padding: 16px 48px;
       background: #ffffff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -39,107 +41,143 @@
 
     nav .logo {
       font-weight: 700;
-      font-size: 20px;
+      font-size: 22px;
       color: #0f766e;
     }
 
     nav ul {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       list-style: none;
     }
 
     nav ul li {
-      cursor: pointer;
       font-weight: 500;
+      opacity: 0.85;
+    }
+
+    nav ul li:hover {
+      opacity: 1;
     }
 
     nav button {
-      padding: 10px 18px;
+      padding: 10px 22px;
       border: none;
-      border-radius: 20px;
+      border-radius: 22px;
       background: #0f766e;
       color: #fff;
       cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s ease;
     }
 
-    /* Hero */
+    nav button:hover {
+      background: #115e59;
+    }
+
+    /* ================= HERO ================= */
     .hero {
-      padding: 100px 40px;
+      padding: 120px 40px;
       text-align: center;
       background: linear-gradient(135deg, #ecfeff, #f0fdfa);
     }
 
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 16px;
+      font-size: 52px;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
     }
 
     .hero p {
       font-size: 18px;
-      max-width: 720px;
+      max-width: 760px;
       margin: auto;
       opacity: 0.85;
     }
 
     .hero .cta {
-      margin-top: 30px;
+      margin-top: 36px;
     }
 
-    /* Sections */
+    .hero .cta button {
+      padding: 14px 32px;
+      border-radius: 28px;
+      font-size: 16px;
+      background: #0f766e;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero .cta button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(15, 118, 110, 0.35);
+    }
+
+    /* ================= SECTIONS ================= */
     section {
-      padding: 80px 40px;
+      padding: 90px 40px;
       max-width: 1200px;
       margin: auto;
     }
 
     section h2 {
-      font-size: 32px;
-      margin-bottom: 16px;
+      font-size: 34px;
+      margin-bottom: 14px;
     }
 
     section p {
       opacity: 0.8;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
+      max-width: 850px;
     }
 
+    /* ================= GRID & CARDS ================= */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      gap: 28px;
     }
 
     .card {
       background: #fff;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
     }
 
     .card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 18px;
     }
 
-    /* Auth */
+    /* ================= AUTH ================= */
     .auth {
       max-width: 420px;
       margin: 80px auto;
       background: #fff;
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      padding: 36px;
+      border-radius: 22px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     }
 
     .auth h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .auth input {
       width: 100%;
       padding: 12px;
       margin-bottom: 14px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid #ddd;
     }
 
@@ -147,41 +185,52 @@
       width: 100%;
       padding: 12px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #0f766e;
       color: #fff;
+      font-size: 15px;
+      cursor: pointer;
     }
 
     .toggle {
       text-align: center;
-      margin-top: 16px;
+      margin-top: 18px;
       cursor: pointer;
       color: #0f766e;
+      font-size: 14px;
     }
 
-    /* Footer */
+    /* ================= FOOTER ================= */
     footer {
       background: #0f172a;
       color: #fff;
-      padding: 40px;
-      margin-top: 80px;
+      padding: 60px 40px;
+      margin-top: 100px;
     }
 
     footer .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
+      gap: 28px;
+    }
+
+    footer h3,
+    footer h4 {
+      margin-bottom: 10px;
     }
 
     footer p {
       opacity: 0.7;
+      font-size: 14px;
+      line-height: 1.8;
     }
   </style>
 </head>
 
 <body>
 
-<nav>
+  <!-- NAVBAR -->
+  <nav>
     <div class="logo">FinanceFlow</div>
     <ul>
       <li><a href="{% url 'home' %}">Home</a></li>
@@ -192,99 +241,76 @@
     <button onclick="location.href='{% url 'auth_html' %}'">Login / Signup</button>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <div class="hero">
     <h1>Track, Plan & Grow Your Money</h1>
-    <p>A minimalistic finance platform giving you a clear overview of income, expenses, savings, and investments.</p>
-    <div class="cta"><button onclick="location.href='{% url 'auth_html' %}'">Get Started</button></div>
-  </div>
-
-    <section>
-      <h2>What This Website Can Do</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Clear Overview</h3>
-          <p>Instant snapshot of balances, income, and expenses.</p>
-        </div>
-        <div class="card">
-          <h3>Expense Categories</h3>
-          <p>Track spending across Food, Travel, Shopping, Bills, and more.</p>
-        </div>
-        <div class="card">
-          <h3>Stock Market Analysis</h3>
-          <p>Monitor portfolio performance and market trends in one place.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Services We Provide</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Expense Strategy</h3>
-          <p>Visual insights into monthly and yearly spending habits.</p>
-        </div>
-        <div class="card">
-          <h3>Money Flow Analytics</h3>
-          <p>Understand how money moves in and out with trend charts.</p>
-        </div>
-        <div class="card">
-          <h3>Card Management</h3>
-          <p>Secure control over debit/credit cards.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Why We Are Different</h2>
-      <p>Unlike other finance apps, FinanceFlow combines clean design with actionable insights. You don’t just see
-        numbers — you understand them.</p>
-    </section>
-
-    <section>
-      <h2>Who Made This</h2>
-      <p>Designed and developed by passionate developers focused on clarity, usability, and financial empowerment.</p>
-    </section>
-  </div>
-
-  <!-- Auth -->
-  <div id="auth" style="display:none">
-    <div class="auth">
-      <h2 id="authTitle">Login</h2>
-      <input placeholder="Email" />
-      <input placeholder="Password" type="password" />
-      <button>Continue</button>
-      <div class="toggle" onclick="toggleAuth()">Don't have an account? Sign up</div>
+    <p>
+      A minimalistic finance platform giving you a clear overview of income,
+      expenses, savings, and investments.
+    </p>
+    <div class="cta">
+      <button onclick="location.href='{% url 'auth_html' %}'">Get Started</button>
     </div>
   </div>
 
-  <!-- Placeholder Pages -->
-  <div id="dashboard" style="display:none">
-    <section>
-      <h2>Dashboard</h2>
-      <p>Main finance dashboard (as shown in design).</p>
-    </section>
-  </div>
-  <div id="transactions" style="display:none">
-    <section>
-      <h2>Transactions</h2>
-      <p>All income & expense history.</p>
-    </section>
-  </div>
-  <div id="payments" style="display:none">
-    <section>
-      <h2>Payments</h2>
-      <p>Send, receive, and manage payments.</p>
-    </section>
-  </div>
-  <div id="support" style="display:none">
-    <section>
-      <h2>Support</h2>
-      <p>Help center & contact support.</p>
-    </section>
-  </div>
+  <!-- WHAT IT DOES -->
+  <section>
+    <h2>What This Website Can Do</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Clear Overview</h3>
+        <p>Instant snapshot of balances, income, and expenses.</p>
+      </div>
+      <div class="card">
+        <h3>Expense Categories</h3>
+        <p>Track spending across Food, Travel, Shopping, Bills, and more.</p>
+      </div>
+      <div class="card">
+        <h3>Stock Market Analysis</h3>
+        <p>Monitor portfolio performance and market trends in one place.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <!-- SERVICES -->
+  <section>
+    <h2>Services We Provide</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Expense Strategy</h3>
+        <p>Visual insights into monthly and yearly spending habits.</p>
+      </div>
+      <div class="card">
+        <h3>Money Flow Analytics</h3>
+        <p>Understand how money moves in and out with trend charts.</p>
+      </div>
+      <div class="card">
+        <h3>Card Management</h3>
+        <p>Secure control over debit and credit cards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENT -->
+  <section>
+    <h2>Why We Are Different</h2>
+    <p>
+      Unlike other finance apps, FinanceFlow combines clean design
+      with actionable insights. You don’t just see numbers —
+      you understand them.
+    </p>
+  </section>
+
+  <!-- WHO MADE -->
+  <section>
+    <h2>Who Made This</h2>
+    <p>
+      Designed and developed by passionate developers focused on clarity,
+      usability, and financial empowerment.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
@@ -309,20 +335,5 @@
     </div>
   </footer>
 
-  <script>
-    function showPage(id) {
-      document.querySelectorAll('body > div').forEach(d => d.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-
-    let isLogin = true;
-    function toggleAuth() {
-      isLogin = !isLogin;
-      document.getElementById('authTitle').innerText = isLogin ? 'Login' : 'Sign Up';
-      document.querySelector('.toggle').innerText = isLogin ? "Don't have an account? Sign up" : 'Already have an account? Login';
-    }
-  </script>
 </body>
-
 </html>
