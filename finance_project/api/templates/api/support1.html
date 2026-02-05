@@ -89,11 +89,11 @@ button.submit {
 
   <div class="navbar">
     <div class="nav-left">
-      <nav><a href="#home">Home</a></nav>
-      <nav><a href="dashboard.html">Dashboard</a></nav>
-      <nav><a href="accounts.html">Your Accounts</a></nav>
-      <nav><a href="transactions.html">Transactions</a></nav>
-      <nav class="active"><a href="support1.html">Support</a></nav>
+      <nav><a href="{% url 'home' %}">Home</a></nav>
+      <nav><a href="{% url 'dashboard_html' %}">Dashboard</a></nav>
+      <nav><a href="{% url 'accounts_html' %}">Your Accounts</a></nav>
+      <nav><a href="{% url 'transactions_html' %}">Transactions</a></nav>
+      <nav class="active"><a href="{% url 'support1_html' %}">Support</a></nav>
     </div>
     <div class="nav-right">
       <nav>Profile</nav>

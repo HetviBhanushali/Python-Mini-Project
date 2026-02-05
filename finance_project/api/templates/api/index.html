@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -183,19 +184,19 @@
 <nav>
     <div class="logo">FinanceFlow</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="expense-tracker.html">Expense Tracker</a></li>
-      <li><a href="features.html">Other Features</a></li>
-      <li><a href="support.html">Support</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'expense_tracker_html' %}">Expense Tracker</a></li>
+      <li><a href="{% url 'features_html' %}">Other Features</a></li>
+      <li><a href="{% url 'support_html' %}">Support</a></li>
     </ul>
-    <button onclick="location.href='auth.html'">Login / Signup</button>
+    <button onclick="location.href='{% url 'auth_html' %}'">Login / Signup</button>
   </nav>
 
   <!-- Hero Section -->
   <div class="hero">
     <h1>Track, Plan & Grow Your Money</h1>
     <p>A minimalistic finance platform giving you a clear overview of income, expenses, savings, and investments.</p>
-    <div class="cta"><button onclick="location.href='auth.html'">Get Started</button></div>
+    <div class="cta"><button onclick="location.href='{% url 'auth_html' %}'">Get Started</button></div>
   </div>
 
     <section>

@@ -185,17 +185,17 @@
   <nav>
     <div class="logo">FinanceFlow</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="expense-tracker.html">Expense Tracker</a></li>
-      <li><a href="features.html">Other Features</a></li>
-      <li><a href="support.html">Support</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'expense_tracker_html' %}">Expense Tracker</a></li>
+      <li><a href="{% url 'features_html' %}">Other Features</a></li>
+      <li><a href="{% url 'support_html' %}">Support</a></li>
     </ul>
     <button>Login / Signup</button>
   </nav>
 
   <div class="auth">
     <h2 id="authTitle">Login</h2>
-    <form id="authForm" method="post" action="/api/login/">
+    <form id="authForm" method="post" action="{% url 'login' %}">
       {% csrf_token %}
       <input id="email" name="email" placeholder="Email" />
       <input id="password" name="password" placeholder="Password" type="password" />

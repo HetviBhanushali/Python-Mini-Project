@@ -37,24 +37,28 @@ body {
   border-radius: 40px;
 }
 
-.nav-left button {
-  border: none;
-  background: none;
+.nav-left a {
+  text-decoration: none;
+  color: #333;
   padding: 10px 16px;
   border-radius: 30px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
-.nav-left .active {
+.nav-left a.active {
   background: #0f766e;
   color: white;
 }
 
-.nav-right button {
+.nav-right a {
   background: #0f766e;
   color: white;
-  border: none;
   padding: 10px 18px;
   border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .table {
@@ -72,14 +76,17 @@ table {
 th, td {
   padding: 14px;
   text-align: left;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 th {
   color: #0f766e;
+  font-weight: 600;
+  background: #f9f9f9;
 }
 
-tr:not(:last-child) {
-  border-bottom: 1px solid #e0e0e0;
+tr:last-child td {
+  border-bottom: none;
 }
 
 .amount {
@@ -91,7 +98,19 @@ tr:not(:last-child) {
 }
 
 .positive {
-  color: #0f766e;
+  color: #27ae60;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-greeting {
+  font-size: 16px;
+  color: #333;
 }
 </style>
 </head>
@@ -101,45 +120,56 @@ tr:not(:last-child) {
 
   <div class="navbar">
     <div class="nav-left">
-      <nav><a href="#home">Home</a></nav>
-      <nav><a href="dashboard.html">Dashboard</a></nav>
-      <nav><a href="accounts.html">Your Accounts</a></nav>
-      <nav class="active"><a href="transactions.html">Transactions</a></nav>
-      <nav><a href="support1.html">Support</a></nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <a href="{% url 'accounts_page' %}">Your Accounts</a>
+      <a href="{% url 'transactions_page' %}" class="active">Transactions</a>
+      <a href="{% url 'support1' %}">Support</a>
     </div>
     <div class="nav-right">
-      <nav>Profile</nav>
+      {% if user %}
+        <a href="{% url 'logout_view' %}">Logout ({{ user.username }})</a>
+      {% else %}
+        <a href="{% url 'auth_page' %}">Login</a>
+      {% endif %}
     </div>
   </div>
 
-  <h1 style="margin-top:30px;">Recent Transactions</h1>
+  <div class="user-info">
+    <h1 style="margin: 0;">Recent Transactions</h1>
+    {% if user %}
+      <span class="user-greeting">{{ user.username }}'s Transactions</span>
+    {% endif %}
+  </div>
 
   <div class="table">
     <table>
-      <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Amount</th>
-      </tr>
-      <tr>
-        <td>24 Jan</td>
-        <td>Grocery Store</td>
-        <td>Expense</td>
-        <td class="amount negative">- $120</td>
-      </tr>
-      <tr>
-        <td>22 Jan</td>
-        <td>Salary</td>
-        <td>Income</td>
-        <td class="amount positive">+ $2,200</td>
-      </tr>
-      <tr>
-        <td>20 Jan</td>
-        <td>Electricity Bill</td>
-        <td>Expense</td>
-        <td class="amount negative">- $85</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+          <tr>
+            <td>{{ transaction.date|date:"d M Y" }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.get_category_display }}</td>
+            <td>{{ transaction.get_transaction_type_display }}</td>
+            <td class="amount {% if transaction.transaction_type == 'expense' %}negative{% else %}positive{% endif %}">
+              {% if transaction.transaction_type == 'expense' %}- {% else %}+ {% endif %}₹{{ transaction.amount|floatformat:2 }}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" style="text-align: center; padding: 40px;">No transactions found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 
