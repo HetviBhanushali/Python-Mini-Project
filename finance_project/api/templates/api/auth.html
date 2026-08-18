@@ -194,24 +194,74 @@
   </nav>
 
   <div class="auth">
-    <h2 id="authTitle">Login</h2>
-    <form id="authForm" method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      <input id="email" name="email" placeholder="Email" />
-      <input id="password" name="password" placeholder="Password" type="password" />
-      <button id="submitBtn" type="submit" style="cursor: pointer;">Continue</button>
-    </form>
-    <div class="toggle" onclick="toggleAuth()">Don't have an account? Sign up</div>
-  </div>
+  <h2 id="authTitle">Login</h2>
 
-  <script>
-    let isLogin = true;
-    function toggleAuth() {
-      isLogin = !isLogin;
-      document.getElementById('authTitle').innerText = isLogin ? 'Login' : 'Sign Up';
-      document.querySelector('.toggle').innerText = isLogin ? "Don't have an account? Sign up" : 'Already have an account? Login';
+  <form id="authForm" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <input
+      id="username"
+      name="username"
+      placeholder="Username"
+      style="display: none;"
+    />
+
+    <input
+      id="email"
+      name="email"
+      type="email"
+      placeholder="Email"
+      required
+    />
+
+    <input
+      id="password"
+      name="password"
+      placeholder="Password"
+      type="password"
+      required
+    />
+
+    <button id="submitBtn" type="submit" style="cursor: pointer;">
+      Continue
+    </button>
+  </form>
+
+  <div class="toggle" onclick="toggleAuth()">
+    Don't have an account? Sign up
+  </div>
+</div>
+
+<script>
+  let isLogin = true;
+
+  function toggleAuth() {
+    isLogin = !isLogin;
+
+    const title = document.getElementById("authTitle");
+    const form = document.getElementById("authForm");
+    const username = document.getElementById("username");
+    const toggle = document.querySelector(".toggle");
+
+    if (isLogin) {
+      title.innerText = "Login";
+      form.action = "{% url 'login' %}";
+
+      username.style.display = "none";
+      username.required = false;
+
+      toggle.innerText = "Don't have an account? Sign up";
+    } else {
+      title.innerText = "Sign Up";
+      form.action = "{% url 'signup' %}";
+
+      username.style.display = "block";
+      username.required = true;
+
+      toggle.innerText = "Already have an account? Login";
     }
-  </script>
+  }
+</script>
 </body>
 
 </html>

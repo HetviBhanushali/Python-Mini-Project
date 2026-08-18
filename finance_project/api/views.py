@@ -203,6 +203,32 @@ def login_view(request):
         status=401
     )
 
+@require_http_methods(["POST"])
+def signup_view(request):
+    """Handle user registration."""
+    username = request.POST.get("username")
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+
+    if not username or not email or not password:
+        return redirect("auth_page")
+
+    if User.objects.filter(username=username).exists():
+        return redirect("auth_page")
+
+    if User.objects.filter(email=email).exists():
+        return redirect("auth_page")
+
+    user = User.objects.create_user(
+        username=username,
+        email=email,
+        password=password
+    )
+
+    login(request, user)
+
+    return redirect("dashboard")
+
 
 def logout_view(request):
     """Handle user logout."""
