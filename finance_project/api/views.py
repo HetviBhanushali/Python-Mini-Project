@@ -156,24 +156,52 @@ def auth_page(request):
 
 @require_http_methods(["POST"])
 def login_view(request):
-    """Handle user login."""
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    
+    """Handle user login via API."""
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+
     if not email or not password:
-        return redirect('auth_page')
+        return JsonResponse(
+            {
+                "success": False,
+                "message": "Email and password are required."
+            },
+            status=400
+        )
 
     try:
         user = User.objects.get(email=email)
-        if user.check_password(password):
-            auth_user = authenticate(request, username=user.username, password=password)
-            if auth_user:
-                login(request, auth_user)
-                return redirect('dashboard')
     except User.DoesNotExist:
-        pass
-    
-    return redirect('auth_page')
+        return JsonResponse(
+            {
+                "success": False,
+                "message": "Invalid email or password."
+            },
+            status=401
+        )
+
+    auth_user = authenticate(
+        request,
+        username=user.username,
+        password=password
+    )
+
+    if auth_user is not None:
+        login(request, auth_user)
+
+        return JsonResponse({
+            "success": True,
+            "message": "Login successful.",
+            "redirect": "/dashboard/"
+        })
+
+    return JsonResponse(
+        {
+            "success": False,
+            "message": "Invalid email or password."
+        },
+        status=401
+    )
 
 
 def logout_view(request):
